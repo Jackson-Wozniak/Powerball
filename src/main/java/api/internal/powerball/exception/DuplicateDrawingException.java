@@ -4,16 +4,16 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
-public class NumberCountException extends RuntimeException{
+public class DuplicateDrawingException extends RuntimeException{
     private final HttpStatus status = HttpStatus.BAD_REQUEST;
-    private final int count;
+    private final int duplicate;
 
-    public NumberCountException(int count) {
-        this.count = count;
+    public DuplicateDrawingException(int duplicate) {
+        this.duplicate = duplicate;
     }
 
     @Override
     public String getMessage(){
-        return "Expected 5 main numbers, but received " + count;
+        return duplicate + " guessed more than once";
     }
 }
