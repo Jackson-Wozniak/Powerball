@@ -3,6 +3,8 @@ package api.internal.powerball.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Random;
+
 @Getter
 @Setter
 public class Prizes {
@@ -16,6 +18,11 @@ public class Prizes {
     private final int powerballPlusFour = 50_000;
     private final int fiveMatch = 1_000_000;
     private int jackpot;
+    private static final Random random = new Random();
+
+    public Prizes(){
+        this.jackpot = (random.nextInt(940) + 60) * 1_000_000;
+    }
 
     public int matchToPrize(int matchingNumbers, boolean hasPowerball){
         return switch (matchingNumbers){

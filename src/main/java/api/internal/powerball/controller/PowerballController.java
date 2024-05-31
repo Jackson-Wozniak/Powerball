@@ -1,5 +1,6 @@
 package api.internal.powerball.controller;
 
+import api.internal.powerball.model.Powerball;
 import api.internal.powerball.payload.DrawingRequest;
 import api.internal.powerball.payload.PowerballDTO;
 import org.springframework.http.MediaType;
@@ -18,7 +19,7 @@ public class PowerballController {
     @PutMapping(consumes = JSON, produces = JSON)
     public ResponseEntity<PowerballDTO> drawNumbers(@RequestBody DrawingRequest request){
         request.verifyNumbers();
-
-        return null;
+        Powerball powerball = new Powerball(request);
+        return ResponseEntity.ok(new PowerballDTO(powerball));
     }
 }
